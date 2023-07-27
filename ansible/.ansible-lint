@@ -1,2 +1,6 @@
 warn_list:
   - '602' # Don't compare to empty string
+skip_list:
+  - name[casing]
+  - yml[truthy]
+  - jinja[spacing]
