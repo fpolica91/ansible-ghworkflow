@@ -18,6 +18,6 @@ jobs:
         with:
           targets: |
             ansible/*.yml
-          args: "-c ansible/.ansible-lint"
+          path: "-c ansible/.ansible-lint"
     
 
