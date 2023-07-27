@@ -1,0 +1,21 @@
+name: Lamp Deployment
+on:
+  push:
+    branches:
+      - main
+jobs:
+  linting:
+    name: Lint Ansible Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Linting
+        uses: ansible/ansible-lint@main
+        with:
+          target: |
+            ansible/playbook.yml
+            ansible/inventory.yml
+    
+

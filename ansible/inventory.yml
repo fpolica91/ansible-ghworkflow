@@ -1,0 +1,10 @@
+---
+all:
+  children:
+    web-servers:
+      hosts:
+        localhost
+      vars:
+        ansible_user: fabricio
+
+
