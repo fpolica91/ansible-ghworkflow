@@ -4,7 +4,6 @@ skip_list:
   - name[casing]
   - yaml[empty-lines]
   - yaml[trailing-spaces]
-  - yml[truthy]
   - jinja[spacing]
   - truthy
   - trailing-spaces
