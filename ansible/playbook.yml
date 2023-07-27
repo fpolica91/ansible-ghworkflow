@@ -30,7 +30,7 @@
     - name: Add ssh-key to local known_hosts
       ansible.builtin.lineinfile:
         path: ~/.ssh/known_hosts
-        create: yes
+        create: true
         line: "{{ item }}"
         mode: "u=rw,g=,o="
       when: keygen.rc == 1

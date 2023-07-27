@@ -6,5 +6,6 @@ all:
         localhost
       vars:
         ansible_user: fabricio
+        
 
 
