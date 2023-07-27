@@ -1,8 +1,2 @@
-warn_list:
-  - '602' # Don't compare to empty string
 skip_list:
-- yaml[empty-lines]
-- yaml
-- yaml[truthy]
-- yaml[indentation]
-
+  - yaml
