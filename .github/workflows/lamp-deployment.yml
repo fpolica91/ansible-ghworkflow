@@ -11,11 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      - name: Install Ansible
-        run: |
-          sudo apt-get update
-          sudo apt-get install ansible -y
+        uses: actions/checkout@v4
       - name: Linting
         uses: ansible/ansible-lint-action@151b9a224f53c80fdc2c7aed08f3671d190e7a9e
         with:
