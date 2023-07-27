@@ -4,3 +4,7 @@ skip_list:
   - name[casing]
   - yml[truthy]
   - jinja[spacing]
+  - truthy
+  - trailing-spaces
+  - empty-lines
+  - new-line-at-end-of-file
