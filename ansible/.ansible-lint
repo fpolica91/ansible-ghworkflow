@@ -1,11 +1,5 @@
 warn_list:
   - '602' # Don't compare to empty string
 skip_list:
-  - name[casing]
-  - yaml[empty-lines]
-  - yaml[trailing-spaces]
-  - jinja[spacing]
-  - truthy
-  - trailing-spaces
-  - empty-lines
-  - new-line-at-end-of-file
+- yaml
+
