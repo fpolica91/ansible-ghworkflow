@@ -1,7 +1,7 @@
 ---
 - name: Basic configuration for all servers
   hosts: all
-  gather_facts: no
+  gather_facts: true
   connection: local
   tasks:
     - name: Ensure .ssh directory exists
@@ -41,28 +41,28 @@
   tasks:
     - name: Ensure Apt is up to date
       ansible.builtin.apt:
-        update_cache: yes
-      become: yes
+        update_cache: true
+      become: true
     - name: Ensure Apache is installed
       ansible.builtin.apt:
         name: apache2=2.4.29*
         state: present
-      become: yes
+      become: true
     - name: Ensure PHP is installed
       ansible.builtin.apt:
         name: php7.2=7.2.24*
         state: present
-      become: yes
+      become: true
     - name: Ensure PHP Module for Apache is installed
       ansible.builtin.apt:
         name: libapache2-mod-php7.2=7.2.24*
         state: present
-      become: yes
+      become: true
     - name: Ensure MySql Module for Apache is installed
       ansible.builtin.apt:
         name: php7.2-mysql=7.2.24*
         state: present
-      become: yes
+      become: true
 
 - name: Deploy the application-package
   hosts: web-servers
@@ -74,9 +74,9 @@
         owner: www-data
         group: www-data
         mode: "u=rw,g=r,o=r"
-      become: yes
+      become: true
     - name: Ensure default HTML file does not exist
       ansible.builtin.file:
         path: /var/www/html/index.html
         state: absent
-      become: yes
+      become: true
