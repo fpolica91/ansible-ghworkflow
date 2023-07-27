@@ -31,7 +31,7 @@
       ansible.builtin.lineinfile:
         path: ~/.ssh/known_hosts
         create: true
-        line: "{{ item }}"
+        line: "{{   keyscan.stdout  }}"
         mode: "u=rw,g=,o="
       when: keygen.rc == 1
       loop: "{{ keyscan.stdout_lines|default([]) }}"
