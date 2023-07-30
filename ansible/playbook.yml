@@ -50,7 +50,7 @@
       become: true
     - name: Ensure PHP is installed
       ansible.builtin.apt:
-        name: php7.2=7.2.24*
+        name: php8.2
         state: present
       become: true
     - name: Ensure PHP Module for Apache is installed
