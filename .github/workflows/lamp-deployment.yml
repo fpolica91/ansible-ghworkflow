@@ -19,6 +19,7 @@ jobs:
           targets: |
             ansible/*.yml
           path: "-c ../../ansible/.ansible-lint"
+      #  upload the playbook as an artifact
       - name: Publish Playbook Artifact
         uses: actions/upload-artifact@v2
         with: 
@@ -35,6 +36,14 @@ jobs:
       with:
         name: playbook
         path: ansible
+    - uses: dawidd6/action-ansible-playbook@v2
+      with:
+        playbook: playbook.yml
+        directory: ansible
+        options: |
+          --inventory inventory-test.yml
+          --extra-vars "test_ssh_password=${{Secrets.TEST_SSH_PASSWORD}}"
+        
       
     
   
