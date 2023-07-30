@@ -45,7 +45,7 @@
       become: true
     - name: Ensure Apache is installed
       ansible.builtin.apt:
-        name: apache2=2.4.29*
+        name: apache2=2.4.57-2
         state: present
       become: true
     - name: Ensure PHP is installed
