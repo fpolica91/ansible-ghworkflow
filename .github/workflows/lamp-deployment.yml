@@ -24,5 +24,20 @@ jobs:
         with: 
           name: playbook
           path: ansible/
+  deploy_to_test:
+    name: Deploy to Test
+    needs: linting
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    # start by downloading the artifact from the linting job
+    steps:
+    - uses: actions/download-artifact@v2
+      with:
+        name: playbook
+        path: ansible
+      
+    
+  
+    
     
 
