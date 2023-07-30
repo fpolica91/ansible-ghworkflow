@@ -1,3 +1,85 @@
+# ---
+# - name: Basic configuration for all servers
+#   hosts: all
+#   gather_facts: true
+#   connection: local
+#   tasks:
+#     - name: Ensure .ssh directory exists
+#       ansible.builtin.file:
+#         path: ~/.ssh
+#         mode: "u=rwX,g=,o="
+#         state: directory
+#     - name: Ensure known_hosts file exists
+#       ansible.builtin.copy:
+#         content: ""
+#         dest: ~/.ssh/known_hosts
+#         mode: "u=rw,g=,o="
+#     - name: "Check if known_hosts contains server's fingerprint"
+#       ansible.builtin.command: ssh-keygen -F {{ inventory_hostname }}
+#       register: keygen
+#       failed_when: keygen.stderr != ''
+#       changed_when: false
+
+#     - name: Fetch remote ssh key
+#       ansible.builtin.command: ssh-keyscan -T5 {{ inventory_hostname }}
+#       register: keyscan
+#       failed_when: keyscan.rc != 0 or keyscan.stdout == ''
+#       changed_when: false
+#       when: keygen.rc == 1
+
+#     - name: Add ssh-key to local known_hosts
+#       ansible.builtin.lineinfile:
+#         path: ~/.ssh/known_hosts
+#         create: true
+#         line: "{{  item  }}"
+#         mode: "u=rw,g=,o="
+#       when: keygen.rc == 1
+#       loop: "{{ keyscan.stdout_lines|default([]) }}"
+
+# - name: Ensure Apache is installed with the correct modules
+#   hosts: web-servers
+#   tasks:
+#     - name: Ensure Apt is up to date
+#       ansible.builtin.apt:
+#         update_cache: true
+#       become: true
+#     - name: Ensure Apache is installed
+#       ansible.builtin.apt:
+#         name: apache2=2.4.57-2
+#         state: present
+#       become: true
+#     - name: Ensure PHP is installed
+#       ansible.builtin.apt:
+#         name: php8.2
+#         state: present
+#       become: true
+#     - name: Ensure PHP Module for Apache is installed
+#       ansible.builtin.apt:
+#         name: libapache2-mod-php7.2=7.2.24*
+#         state: present
+#       become: true
+#     - name: Ensure MySql Module for Apache is installed
+#       ansible.builtin.apt:
+#         name: php7.2-mysql=7.2.24*
+#         state: present
+#       become: true
+
+# - name: Deploy the application-package
+#   hosts: web-servers
+#   tasks:
+#     - name: Install PHP File
+#       ansible.builtin.copy:
+#         src: files/index.php
+#         dest: /var/www/html/index.php
+#         owner: www-data
+#         group: www-data
+#         mode: "u=rw,g=r,o=r"
+#       become: true
+#     - name: Ensure default HTML file does not exist
+#       ansible.builtin.file:
+#         path: /var/www/html/index.html
+#         state: absent
+#       become: true
 ---
 - name: Basic configuration for all servers
   hosts: all
@@ -55,12 +137,12 @@
       become: true
     - name: Ensure PHP Module for Apache is installed
       ansible.builtin.apt:
-        name: libapache2-mod-php7.2=7.2.24*
+        name: libapache2-mod-php8.2
         state: present
       become: true
-    - name: Ensure MySql Module for Apache is installed
+    - name: Ensure MySql Module for PHP is installed
       ansible.builtin.apt:
-        name: php7.2-mysql=7.2.24*
+        name: php8.2-mysql
         state: present
       become: true
 
